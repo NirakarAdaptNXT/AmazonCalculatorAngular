@@ -1,0 +1,107 @@
+<div class="background">
+    <div >
+        <div>
+            <img src="../../../assets/amazon3.jpg" height="80" width="250" style="margin-left:30px;">
+        </div>
+    </div>
+    <div class="secondbackground">
+        <div class="m-lg-1">
+            <div>
+                <label>Product Category</label>
+            </div>
+            <div>
+                <select class="form-select" [(ngModel)]="category" (change)="getSubCategory($event)">
+                    <option>Select your Category</option>
+                    <option *ngFor="let item of categories" >{{item}}</option>
+                </select>
+            </div>
+            <div>
+                <label class="form-label">Product SubCategory</label>
+            </div>
+            <div>
+                <select class="form-select" [(ngModel)]="subcategory" (change)="OnsubCategorySelect($event)">
+                    <option>Select your SubCategory</option>
+                    <option *ngFor="let item of subcategories">{{item}}</option>
+                </select>
+            </div>
+            <div class="d-flex">
+                <div class="m-lg-2" >
+                    <label>Price</label>
+                    <span> &nbsp;<b>&#8377;</b></span>
+                    <input class="form-text mt-2 rounded-1"  [(ngModel)]="price" (input)="onPriceChange()" type="number" placeholder="Product price" >
+                </div>
+                <div class="m-lg-auto">
+                    <label class="form-label">Weight &nbsp;</label>
+                    <input class="form-text mt-2 rounded-1"  [(ngModel)]="weight" (input)="onWeightChange()" type="number"  placeholder="Product Weight in gm">
+                    <span>&nbsp;<b>in gm</b></span>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div>
+                    <select class="form-select mt-2" [(ngModel)]="shippingway" (change)="showNext(); onShippingWaySelect();" >
+                        <option>Select Shipping Method</option>
+                        <option value="FBA">Fulfillment By Amazon</option>
+                        <option value="Easy Ship">Ship By Amazon EasyShip</option>
+                        <option value="Self Ship">Ship By Self</option>
+                    </select>
+                </div>
+                <div *ngIf="isviewshippingarea;then trueBlock else falseBlock">
+                </div>
+                <ng-template #trueBlock>
+                    <div class="m-lg-auto">
+                        <select class="form-select mt-2" [(ngModel)]="shippingarea" (change)="OnShippingAreaSelect($event)">
+                            <option>Select Shipping Area</option>
+                            <option>Local</option>
+                            <option>Regional</option>
+                            <option>National</option>
+                        </select>
+                    </div>
+                </ng-template>
+                <ng-template #falseBlock>
+                    <div class="m-lg-auto">
+                        <input type="number" [(ngModel)]="shippingcost"  (input)="onShippingCostChange()" class="form-control mt-2 rounded-1" placeholder="Shipping Cost">
+                    </div>
+                </ng-template>
+            </div>
+            
+            <div>
+                <table class="table mt-lg-2">
+                    <tbody>
+                        <tr>
+                            <td class="col-6"><b>Referral Fees</b></td>
+                            <td class="col-2">Rs.{{output.referralFee}}</td>
+                        </tr>
+                        <tr >
+                            <td class="col-6"><b>Closing Fees</b></td>
+                            <td class="col-2">Rs.{{output.closingFee}}</td>
+                        </tr>
+                        <tr >
+                            <td class="col-6"><b>Amazon Shipping Fees</b></td>
+                            <td class="col-2" >Rs.{{output.shippingFee}}</td>
+                        </tr>
+                        <tr >
+                            <td class="col-6"><b>Other Fees Only For FBA</b></td>
+                            <td class="col-2" >Rs.{{output.otherFee!=null?output.otherFee:0}}</td>
+                        </tr>
+                        <tr >
+                            <td class="col-6"><b>Referral+Closing+Shipping Fees+Other Fees</b></td>
+                            <td class="col-2" >Rs.{{output.referralClosingShipping}}</td>
+                        </tr>
+                        <tr >
+                            <td class="col-6"><b>GST on Referral+Closing+Shipping Fees</b></td>
+                            <td class="col-2" >Rs.{{output.gstonreferralClosingShipping}}</td>
+                        </tr>
+                        <tr >
+                            <td class="col-6"><b>Total Amazon Charges</b></td>
+                            <td class="col-2" >Rs.{{output.totalAmazonCharges}}</td>
+                        </tr>
+                        <tr >
+                            <td class="col-6"><b>You Make</b></td>
+                            <td class="col-2" >Rs.{{output.youMake}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

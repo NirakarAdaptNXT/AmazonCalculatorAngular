@@ -1,0 +1,16 @@
+.background{
+    background-color: black;
+    width: 80%;
+    margin-top:20px;
+    margin-left: 140px;
+    border-radius: 10px;
+    padding-bottom: 50px;
+}
+
+.secondbackground{
+    background-color: orange;
+    padding: 15px;
+    width: 80%;
+    margin-left:110px;
+    border-radius: 20px;
+}
